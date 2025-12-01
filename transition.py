@@ -34,7 +34,7 @@ class Transition:
         if not self.active:
             return
 
-        # ✅ Properly sized overlay surface
+        # Properly sized overlay surface
         overlay = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
 
         radius = int(max(WIDTH, HEIGHT) * self.progress * 1.5)

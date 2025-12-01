@@ -49,7 +49,7 @@ class Wave:
             self.radius *= 0.75
             self.alpha *= 0.85
 
-            # ✅ create visible spark burst when bouncing
+            # create visible spark burst when bouncing
             for _ in range(10):
                 angle = math.radians(random.randint(0, 360))
                 speed = random.uniform(60, 140)
@@ -62,7 +62,7 @@ class Wave:
                     "color": tuple(min(255, c + 100) for c in self.base_color),  # brighter sparks
                 })
 
-        # ✅ Update and fade particles
+        # Update and fade particles
         for p in self.particles[:]:
             p["x"] += p["dx"] * dt
             p["y"] += p["dy"] * dt
@@ -71,7 +71,7 @@ class Wave:
                 self.particles.remove(p)
 
         # smooth fade out (end of players wave life)
-        # ✅ Smooth fade-out for all waves (works on every bounce)
+        # smooth fade-out for all waves (works on every bounce)
         life_ratio = min(1.0, self.radius / self.max_radius)
         self.alpha = max(0, 180 * (1 - life_ratio ** 1.5))
 
@@ -134,7 +134,7 @@ class Wave:
             special_flags=pygame.BLEND_ADD,
         )
 
-        # ✅ Draw small fading sparks (safe color conversion)
+        # Draw small fading sparks (safe color conversion)
         for p in self.particles:
             spark_alpha = max(0, min(255, int(255 * (p["life"] / 0.8))))
             color = tuple(int(min(255, max(0, c))) for c in p["color"])

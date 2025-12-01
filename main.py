@@ -2,7 +2,7 @@ import pygame
 import sys
 import random
 import math
-import os  # 🔍 NEW: for path debugging
+import os 
 from player import Player
 from wave import Wave
 from lighting import Lighting
@@ -11,12 +11,12 @@ from settings import *
 from pickup import Pickup
 from transition import Transition
 from death_effect import DeathEffect
-from level import Level  # ✅ new import
+from level import Level
 from sound import SoundManager
 
 pygame.init()
 
-# 🔍 DEBUG: mixer + paths
+#DEBUG: mixer + paths
 print("MIXER INIT:", pygame.mixer.get_init())
 print("WORKING DIR:", os.getcwd())
 print("PLUCK EXISTS:", os.path.exists("assets/sounds/pluck.wav"))
@@ -33,7 +33,7 @@ def apply_screen_shake(intensity):
     return offset_x, offset_y
 
 # -----------------------------------------------------
-# ✔️ MENU DRAW FUNCTION
+# MENU DRAW FUNCTION
 # -----------------------------------------------------
 def draw_menu():
     screen.fill((10, 10, 15))
@@ -52,7 +52,7 @@ def draw_menu():
     pygame.display.flip()
 
 # -----------------------------------------------------
-# ⭐ NEW: COUNTDOWN FUNCTION (SAFE + ISOLATED)
+#NEW: COUNTDOWN FUNCTION (SAFE + ISOLATED)
 # -----------------------------------------------------
 def run_countdown():
     countdown_font = pygame.font.Font(None, 180)
@@ -79,7 +79,7 @@ def main():
     effects = []  # 💥 for hybrid death effects
     level = Level()  # ✅ new level manager instance
 
-    # 🔊 NEW — initialize sound
+    # initialize sound
     sound = SoundManager()
     sound.load_sound("shoot", "assets/sounds/pluck_boosted.wav", volume=1.0)
     print("LOADED SOUNDS (after init):", sound.sounds)  # 🔍 DEBUG
@@ -110,7 +110,7 @@ def main():
                 waves.append(Wave(player.rect.center, pygame.mouse.get_pos(), level.get_color()))
                 sound.play("shoot")  # 🔊 play shooting wave SFX
 
-            # ✅ Reset player speed when boost timer ends
+            # reset player speed when boost timer ends
             if event.type == pygame.USEREVENT + 1:
                 player.speed = PLAYER_SPEED
 
@@ -190,7 +190,7 @@ def main():
                         shake_timer = 0.3
                         shake_intensity = 6
 
-                        # 💥 Spawn hybrid death effect
+                        # Spawn hybrid death effect
                         effects.append(DeathEffect(enemy.pos.x, enemy.pos.y, level.get_color()))
 
                         # 10% chance to drop a pickup
